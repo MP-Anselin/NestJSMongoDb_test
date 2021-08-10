@@ -3,6 +3,7 @@
 </p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
@@ -26,6 +27,115 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+The project aim's to develop un API with nest JS and mongodb on this app we fund routes:<br>
+{ route: { path: '/', method: 'get' } }, <br>
+{ route: { path: '/users', method: 'get' } },<br>
+{ route: { path: '/users/:id', method: 'get' } },<br>
+{ route: { path: '/users/:id', method: 'patch' } },<br>
+{ route: { path: '/users/:id', method: 'delete' } },<br>
+{ route: { path: '/auth/login', method: 'post' } },<br>
+{ route: { path: '/auth/signup', method: 'post' } },<br>
+{ route: { path: '/auth/logout/:userId', method: 'get' } },<br>
+{ route: { path: '/posts/create', method: 'post' } },<br>
+{ route: { path: '/posts', method: 'get' } },<br>
+{ route: { path: '/posts/:id', method: 'get' } },<br>
+{ route: { path: '/posts/:id', method: 'patch' } },<br>
+{ route: { path: '/posts/:id', method: 'delete' } }<br>
+
+Auth : <br>
+{ route: { path: '/auth/signup', method: 'post' } },<br>
+{ route: { path: '/auth/login', method: 'post' } },<br>
+{ route: { path: '/auth/logout/:userId', method: 'get' } },<br>
+
+sign up, create a user on the database, { path: '/auth/signup', method: 'post' }<br>
+params example =>
+
+```bash
+                      "first_name": "test0.1",
+                      "last_name": "test0.1",
+                      "username": "test0.1",
+                      "email": "test0.1@gmail.com",
+                      "password": "12345678"
+```
+
+Log-in, give the current user if existed on the database { path: '/auth/login', method: 'post' }<br>
+params example =>
+
+```bash
+                      "username": "test0.1",
+                      "password": "12345678"
+```
+
+Log out, close the account of the current user { path: '/auth/logout/:userID', method: 'get' }<br>
+Header example =>
+
+```bash
+                      [{"key":"Authorization","value":"Bearer tokenId"}]
+```
+
+params example =>
+
+```bash
+                      users/auth/logout/34858783-0ef5-4992-8a43-e3daf85a6009
+```
+
+Posts : <br>
+{ route: { path: '/posts/create', method: 'post' } },<br>
+{ route: { path: '/posts', method: 'get' } },<br>
+{ route: { path: '/posts/:id', method: 'get' } },<br>
+{ route: { path: '/posts/:id', method: 'patch' } },<br>
+{ route: { path: '/posts/:id', method: 'delete' } }<br>
+
+Create a post by id { path: '/posts/create', method: 'post' } <br>
+Header example =>
+```bash
+                      [{"key":"Authorization","value":"Bearer tokenId"}]
+```
+params =>
+```bash
+                      "userId": "6110eba3f8e4e3200105abf0",
+                      "title": "test 2 delete",
+                      "description": "I'm a test 2 to delete"
+```
+
+Get all posts { path: '/posts', method: 'get' }<br>
+Header example =>
+
+```bash
+                      [{"key":"Authorization","value":"Bearer tokenId"}]
+```
+
+Get a post by id path: '/posts/:id', method: 'get' } <br> 
+Header example =>
+```bash
+                      [{"key":"Authorization","value":"Bearer tokenId"}]
+```
+params =>
+```bash
+                      http://localhost:8080/posts/610fcf1d06117ef9c46140c0
+```
+
+Update, update the fields (title, description) of a post { path: '/posts/:id', method: 'patch' }
+params example =>
+```bash
+                      posts/611154f2022918d069a68deb
+                      "username": "test2_patch",
+                      "email": "test2.1_patch@gmail.com"
+```
+
+Update, remove a post { path: '/posts/:id', method: 'delete' }
+Header example =>
+```bash
+                      [{"key":"Authorization","value":"Bearer tokenId"}]
+```
+params example =>
+```bash
+                      posts/611154f2022918d069a68deb
+                      "username": "test2_patch",
+                      "email": "test2.1_patch@gmail.com"
+```
+
+
 ## Installation
 
 ```bash
@@ -37,37 +147,25 @@ $ npm install
 ```bash
 # development
 $ npm run start
-
 # watch mode
 $ npm run start:dev
-
 # production mode
 $ npm run start:prod
 ```
 
-## Test
+## On Docker
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+$ docker-compose up
 ```
 
-## Support
+## Run test
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+npm run test:watch
+```
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- Author - Anselin Mackendy-Pierre
+- linkedin - https://www.linkedin.com/in/mp-anselin-827027167/
