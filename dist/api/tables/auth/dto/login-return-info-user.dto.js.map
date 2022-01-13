@@ -1,0 +1,1 @@
+{"version":3,"file":"login-return-info-user.dto.js","sourceRoot":"","sources":["../../../../../src/api/tables/auth/dto/login-return-info-user.dto.ts"],"names":[],"mappings":";;;AACA,+EAAyE;AAEzE,MAAa,sBAAuB,SAAQ,wCAAiB;IAC3D,YAAY,KAAa,EAAE,IAAoB;QAC7C,IAAI,CAAC,IAAI;YACP,OAAO;QACT,KAAK,CAAC,IAAI,CAAC,CAAC;QACZ,IAAI,CAAC,YAAY,GAAG,KAAK,CAAC;IAC5B,CAAC;CAEF;AARD,wDAQC"}
