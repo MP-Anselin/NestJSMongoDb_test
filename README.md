@@ -62,7 +62,7 @@ Log-in, give the current user if existed on the database { path: '/auth/login', 
 params example =>
 
 ```bash
-                      "username": "test0.1",
+                      "email": "test0.1",
                       "password": "12345678"
 ```
 

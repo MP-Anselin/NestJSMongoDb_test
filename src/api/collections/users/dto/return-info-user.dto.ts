@@ -11,6 +11,7 @@ export class ReturnInfoUserDto {
     this.username = user.username;
     this.role = user.role;
     this.books = user.books;
+    this.favorite_books = user.favorite_books;
   }
   _id: string;
   role: string;
@@ -20,4 +21,5 @@ export class ReturnInfoUserDto {
   username: string;
   isLog: boolean;
   books: Book[];
+  favorite_books: Book[];
 }

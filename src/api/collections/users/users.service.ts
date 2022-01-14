@@ -7,9 +7,7 @@ import {RegisterUserDto} from "../auth/dto/register-user.dto";
 import * as bcrypt from "bcryptjs";
 import {Post} from "../posts/schemas/post.schema";
 import {ReturnInfoUserDto} from "./dto/return-info-user.dto";
-import {Book} from "../books/schemas/book.schema";
 import {NotFoundException} from "@nestjs/common/exceptions/not-found.exception";
-
 
 @Injectable()
 export class UsersService {
@@ -20,7 +18,7 @@ export class UsersService {
         const {email} = newUserInfo;
         const userExist = await this.userModel.findOne({email});
         if (userExist) {
-            throw new ConflictException("Username already exist");
+            throw new ConflictException("email already exist");
         }
         const newUser = new this.userModel(newUserInfo);
         newUser.createdAt = new Date();
@@ -60,24 +58,41 @@ export class UsersService {
     }
 
     async updatePostsArray(_id: Types.ObjectId | string, newPost: Post) {
-        /*const userCreator = await this.findById({ _id });
-        userCreator.posts.push(newPost);
-        return await this.updateInfo(userCreator, { _id });*/
         return "that function has to be delete"
     }
 
-    async updateBookArray(_id: Types.ObjectId | string, newBook: Book) {
-        const userCreator = await this.findByFilter({_id: _id});
-        if (!userCreator)
+    async addBookToBookList(_id: Types.ObjectId | string, bookInfo: any) {
+        const userUpdate = await this.findOneByFilter({_id: _id});
+        if (!userUpdate)
             throw new NotFoundException()
-        userCreator.books.push(newBook);
-        return this.updateInfo(userCreator, {_id});
+        else if (userUpdate.books.includes(bookInfo))
+            throw new ConflictException()
+        userUpdate.books.push(bookInfo);
+        return this.updateInfo(userUpdate, {_id});
     }
 
-    async findByFilter(filter: {}): Promise<any> {
-        const user = await this.userModel.findOne(filter);
+    async addBookToFavoriteList(_id: Types.ObjectId | string, bookInfo: any) {
+        const userUpdate = await this.findOneByFilter({_id: _id});
+        if (!userUpdate)
+            throw new NotFoundException()
+        else if (userUpdate.favorite_books.includes(bookInfo))
+            throw new ConflictException()
+        userUpdate.favorite_books.push(bookInfo);
+        return this.updateInfo(userUpdate, {_id});
+    }
+
+    async deleteBookToFavoriteList(_id: Types.ObjectId | string, bookInfo: any) {
+        const userUpdate = await this.findOneByFilter({_id: _id});
+        if (!userUpdate || !userUpdate.favorite_books.includes(bookInfo))
+            throw new NotFoundException()
+        userUpdate.favorite_books.splice(bookInfo, 1)
+        return this.updateInfo(userUpdate, {_id});
+    }
+
+    async findOneByFilter(filter: {}): Promise<User> {
+        const user: User = await this.userModel.findOne(filter);
         if (user)
-            return new ReturnInfoUserDto(user);
+            return user;
         throw new NotFoundException()
     }
 

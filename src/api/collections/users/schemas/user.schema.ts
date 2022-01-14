@@ -8,6 +8,7 @@ export type UserDocument = User & Document;
 @Schema()
 export class User {
   @Prop({ require: true, unique: true })
+  @IsNotEmpty()
   @IsEmail()
   email: string;
 
@@ -54,6 +55,9 @@ export class User {
 
   @Prop({type: [Types.ObjectId], ref: "Book"})
   books: Book[];
+
+  @Prop({type: [Types.ObjectId], ref: "Book"})
+  favorite_books: Book[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

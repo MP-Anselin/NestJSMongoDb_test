@@ -5,12 +5,12 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthGuard } from "@nestjs/passport";
 import { JwtAuthGuard } from "../auth/jwt/jwt-auth.guard";
 
-@Controller('users')
+@Controller('user')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @UseGuards(JwtAuthGuard)
-  @Get()
+  @Get('')
   findAll() {
     return this.usersService.findAll();
   }
@@ -25,6 +25,18 @@ export class UsersController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch('favorite/book/add/:userId&:bookId')
+  addFavoriteBook(@Param('userId') userId: string, @Param('bookId') bookId: string) {
+    return this.usersService.addBookToFavoriteList(userId, bookId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch('favorite/book/delete/:userId&:bookId')
+  deleteFavoriteBook(@Param('userId') userId: string, @Param('bookId') bookId: string) {
+    return this.usersService.deleteBookToFavoriteList(userId, bookId);
   }
 
   @UseGuards(AuthGuard('jwt'), RolesGuard)

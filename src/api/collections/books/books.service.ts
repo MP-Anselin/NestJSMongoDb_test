@@ -32,7 +32,7 @@ export class BooksService {
       }
     }
 
-    await this.usersService.updateBookArray(newBook._id, newBook);
+    await this.usersService.addBookToBookList(newBook._id, newBook);
     return newBook;
   }
 
