@@ -15,13 +15,13 @@ const users_service_1 = require("../users.service");
 let RolesGuard = class RolesGuard {
     constructor(usersService) {
         this.usersService = usersService;
-        this.roles = ['Admin'];
+        this.roles = ['Admin', 'Author'];
     }
     async canActivate(context) {
         const request = context.switchToHttp().getRequest();
         const { username } = request.user;
-        const userAdmin = await this.usersService.findByUsername({ username });
-        if (!!userAdmin.roles.filter((role) => this.roles.includes(role)).length) {
+        const userInfo = await this.usersService.findByUsername({ username });
+        if (!!userInfo.roles.filter((role) => this.roles.includes(role)).length) {
             return true;
         }
         throw new common_1.UnauthorizedException();

@@ -1,6 +1,6 @@
 export declare class RegisterUserDto {
-    firstName: string;
-    lastName: string;
+    first_name: string;
+    last_name: string;
     username: string;
     roles: string[];
     email: string;

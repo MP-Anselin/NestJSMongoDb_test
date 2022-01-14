@@ -9,39 +9,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RegisterUserDto = void 0;
+exports.BookSchema = exports.Book = void 0;
+const mongoose_1 = require("@nestjs/mongoose");
+const mongoose_2 = require("mongoose");
 const class_validator_1 = require("class-validator");
-class RegisterUserDto {
-}
+let Book = class Book {
+};
 __decorate([
-    class_validator_1.IsNotEmpty(),
+    mongoose_1.Prop({ type: mongoose_2.Types.ObjectId, ref: "User" }),
+    __metadata("design:type", mongoose_2.Types.ObjectId)
+], Book.prototype, "author", void 0);
+__decorate([
+    mongoose_1.Prop({ require: true, unique: true }),
     __metadata("design:type", String)
-], RegisterUserDto.prototype, "first_name", void 0);
+], Book.prototype, "name", void 0);
 __decorate([
-    class_validator_1.IsNotEmpty(),
+    mongoose_1.Prop({ require: true }),
     __metadata("design:type", String)
-], RegisterUserDto.prototype, "last_name", void 0);
+], Book.prototype, "isbn", void 0);
 __decorate([
+    mongoose_1.Prop({ require: true }),
     class_validator_1.IsNotEmpty(),
-    __metadata("design:type", String)
-], RegisterUserDto.prototype, "username", void 0);
+    class_validator_1.IsDate(),
+    __metadata("design:type", Date)
+], Book.prototype, "createdAt", void 0);
 __decorate([
+    mongoose_1.Prop({ require: true }),
     class_validator_1.IsNotEmpty(),
-    __metadata("design:type", Array)
-], RegisterUserDto.prototype, "roles", void 0);
-__decorate([
-    class_validator_1.IsNotEmpty(),
-    class_validator_1.IsEmail(),
-    __metadata("design:type", String)
-], RegisterUserDto.prototype, "email", void 0);
-__decorate([
-    class_validator_1.IsNotEmpty(),
-    class_validator_1.MinLength(5),
-    class_validator_1.MaxLength(50),
-    class_validator_1.Matches(/^(?=.*\d).{5,20}$/, {
-        message: 'password too weak',
-    }),
-    __metadata("design:type", String)
-], RegisterUserDto.prototype, "password", void 0);
-exports.RegisterUserDto = RegisterUserDto;
-//# sourceMappingURL=register-user.dto.js.map
+    class_validator_1.IsDate(),
+    __metadata("design:type", Date)
+], Book.prototype, "updatedAt", void 0);
+Book = __decorate([
+    mongoose_1.Schema()
+], Book);
+exports.Book = Book;
+exports.BookSchema = mongoose_1.SchemaFactory.createForClass(Book);
+//# sourceMappingURL=book.schema.js.map

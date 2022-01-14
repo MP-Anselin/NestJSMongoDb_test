@@ -45,12 +45,11 @@ let AuthService = AuthService_1 = class AuthService {
         return null;
     }
     static async comparePassword(pwd, hash) {
-        return await bcrypt.compare(pwd, hash);
+        return bcrypt.compare(pwd, hash);
     }
-    ;
     static async validatePassword(userCheckPwd, pwdToCheck) {
         const userPwd = userCheckPwd.password;
-        return userCheckPwd && (await AuthService_1.comparePassword(pwdToCheck, userPwd));
+        return userCheckPwd && AuthService_1.comparePassword(pwdToCheck, userPwd);
     }
     async logIn(logForm) {
         const email = logForm._doc.email;

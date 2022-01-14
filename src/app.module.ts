@@ -8,6 +8,7 @@ import { ConfigModule } from "@nestjs/config";
 import { AuthModule } from "./api/collections/auth/auth.module";
 import { PostsModule } from "./api/collections/posts/posts.module";
 import { BooksModule } from './api/collections/books/books.module';
+import { AuthorsModule } from './api/collections/authors/authors.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { BooksModule } from './api/collections/books/books.module';
     UsersModule,
     AuthModule,
     PostsModule,
-    BooksModule],
+    BooksModule,
+    AuthorsModule],
   controllers: [AppController],
   providers: [AppService]
 })

@@ -6,8 +6,8 @@ const update_user_dto_1 = require("../dto/update-user.dto");
 const mockedUserInfo = () => {
     return {
         _id: expect.any(mongoose_1.Types.ObjectId),
-        firstName: expect.any(String),
-        lastName: expect.any(String),
+        first_name: expect.any(String),
+        last_name: expect.any(String),
         email: expect.any(String),
         isLog: expect.any(Boolean),
         username: expect.any(String),
@@ -20,9 +20,9 @@ const mockedUserInfo = () => {
 };
 const mockedUserCreate = (info) => {
     const user = mockedUserInfo();
-    user.firstName = info.firstName;
-    user.lastName = info.lastName;
-    user.email = info.lastName;
+    user.first_name = info.first_name;
+    user.last_name = info.last_name;
+    user.email = info.last_name;
     delete user.access_token;
     delete user.updatedAt;
     delete user.createdAt;
@@ -38,14 +38,14 @@ const mockedUserFindOne = (userId) => {
 };
 const mockedUserUpdate = (userId, updateUserDto) => {
     const user = mockedUserCreate(updateUserDto);
-    user.firstName = "testv2.0 updadte";
-    user.lastName = "testv2.0 updadte";
+    user.first_name = "testv2.0 updadte";
+    user.last_name = "testv2.0 updadte";
     return Object.assign(Object.assign({}, user), { updatedAt: expect.any(Date) });
 };
 const mockedUserLogIn = (info) => {
     const user = mockedUserInfo();
-    user.firstName = info.firstName;
-    user.lastName = info.lastName;
+    user.first_name = info.first_name;
+    user.last_name = info.last_name;
     delete user.updatedAt;
     delete user.createdAt;
     return user;
@@ -61,8 +61,8 @@ exports.userUnitTestParams = {
         password: "12345678"
     },
     newUser: {
-        lastName: "testv2",
-        firstName: "testv2",
+        last_name: "testv2",
+        first_name: "testv2",
         username: "testv2.client.6",
         email: "testv2.client.6@testv2.com",
         password: "12345678",

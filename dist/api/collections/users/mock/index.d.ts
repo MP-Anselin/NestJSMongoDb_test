@@ -12,8 +12,8 @@ export declare const userUnitTestParams: {
         password: string;
     };
     newUser: {
-        lastName: string;
-        firstName: string;
+        last_name: string;
+        first_name: string;
         username: string;
         email: string;
         password: string;
@@ -23,8 +23,8 @@ export declare const userUnitTestParams: {
 export declare const mockedUser: {
     signUp: {
         _id: any;
-        firstName: any;
-        lastName: any;
+        first_name: any;
+        last_name: any;
         email: any;
         isLog: any;
         username: any;
@@ -36,8 +36,8 @@ export declare const mockedUser: {
     };
     logIn: {
         _id: any;
-        firstName: any;
-        lastName: any;
+        first_name: any;
+        last_name: any;
         email: any;
         isLog: any;
         username: any;
@@ -49,8 +49,8 @@ export declare const mockedUser: {
     };
     findOne: {
         _id: any;
-        firstName: any;
-        lastName: any;
+        first_name: any;
+        last_name: any;
         email: any;
         isLog: any;
         username: any;
@@ -63,8 +63,8 @@ export declare const mockedUser: {
     update: {
         updatedAt: any;
         _id: any;
-        firstName: any;
-        lastName: any;
+        first_name: any;
+        last_name: any;
         email: any;
         isLog: any;
         username: any;
@@ -75,8 +75,8 @@ export declare const mockedUser: {
     };
     remove: {
         _id: any;
-        firstName: any;
-        lastName: any;
+        first_name: any;
+        last_name: any;
         email: any;
         isLog: any;
         username: any;
@@ -92,8 +92,8 @@ export declare const userRepositoryMockValue: {
     logOut: jest.Mock<any, any>;
     signUp: jest.Mock<{
         _id: any;
-        firstName: any;
-        lastName: any;
+        first_name: any;
+        last_name: any;
         email: any;
         isLog: any;
         username: any;
@@ -105,8 +105,8 @@ export declare const userRepositoryMockValue: {
     }, [newUser: any]>;
     logIn: jest.Mock<{
         _id: any;
-        firstName: any;
-        lastName: any;
+        first_name: any;
+        last_name: any;
         email: any;
         isLog: any;
         username: any;
@@ -118,8 +118,8 @@ export declare const userRepositoryMockValue: {
     }, [logUser: any]>;
     findOne: jest.Mock<{
         _id: any;
-        firstName: any;
-        lastName: any;
+        first_name: any;
+        last_name: any;
         email: any;
         isLog: any;
         username: any;
@@ -132,8 +132,8 @@ export declare const userRepositoryMockValue: {
     update: jest.Mock<{
         updatedAt: any;
         _id: any;
-        firstName: any;
-        lastName: any;
+        first_name: any;
+        last_name: any;
         email: any;
         isLog: any;
         username: any;
@@ -144,8 +144,8 @@ export declare const userRepositoryMockValue: {
     }, [userId: any, updateUser: any]>;
     remove: jest.Mock<{
         _id: any;
-        firstName: any;
-        lastName: any;
+        first_name: any;
+        last_name: any;
         email: any;
         isLog: any;
         username: any;
