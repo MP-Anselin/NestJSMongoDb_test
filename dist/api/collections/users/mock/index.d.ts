@@ -17,7 +17,7 @@ export declare const userUnitTestParams: {
         username: string;
         email: string;
         password: string;
-        roles: string[];
+        role: string;
     };
 };
 export declare const mockedUser: {
@@ -28,7 +28,7 @@ export declare const mockedUser: {
         email: any;
         isLog: any;
         username: any;
-        roles: any;
+        role: any;
         posts: any;
         access_token: any;
         updatedAt: any;
@@ -41,7 +41,7 @@ export declare const mockedUser: {
         email: any;
         isLog: any;
         username: any;
-        roles: any;
+        role: any;
         posts: any;
         access_token: any;
         updatedAt: any;
@@ -54,7 +54,7 @@ export declare const mockedUser: {
         email: any;
         isLog: any;
         username: any;
-        roles: any;
+        role: any;
         posts: any;
         access_token: any;
         updatedAt: any;
@@ -68,7 +68,7 @@ export declare const mockedUser: {
         email: any;
         isLog: any;
         username: any;
-        roles: any;
+        role: any;
         posts: any;
         access_token: any;
         createdAt: any;
@@ -80,7 +80,7 @@ export declare const mockedUser: {
         email: any;
         isLog: any;
         username: any;
-        roles: any;
+        role: any;
         posts: any;
         access_token: any;
         updatedAt: any;
@@ -97,7 +97,7 @@ export declare const userRepositoryMockValue: {
         email: any;
         isLog: any;
         username: any;
-        roles: any;
+        role: any;
         posts: any;
         access_token: any;
         updatedAt: any;
@@ -110,7 +110,7 @@ export declare const userRepositoryMockValue: {
         email: any;
         isLog: any;
         username: any;
-        roles: any;
+        role: any;
         posts: any;
         access_token: any;
         updatedAt: any;
@@ -123,7 +123,7 @@ export declare const userRepositoryMockValue: {
         email: any;
         isLog: any;
         username: any;
-        roles: any;
+        role: any;
         posts: any;
         access_token: any;
         updatedAt: any;
@@ -137,7 +137,7 @@ export declare const userRepositoryMockValue: {
         email: any;
         isLog: any;
         username: any;
-        roles: any;
+        role: any;
         posts: any;
         access_token: any;
         createdAt: any;
@@ -149,7 +149,7 @@ export declare const userRepositoryMockValue: {
         email: any;
         isLog: any;
         username: any;
-        roles: any;
+        role: any;
         posts: any;
         access_token: any;
         updatedAt: any;

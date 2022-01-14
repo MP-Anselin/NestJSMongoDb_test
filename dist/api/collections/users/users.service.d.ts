@@ -9,16 +9,13 @@ export declare class UsersService {
     private userModel;
     constructor(userModel: Model<UserDocument>);
     create(newUserInfo: RegisterUserDto): Promise<User>;
-    updateInfo(updateInfo: Partial<UpdateUserDto>, userFilterQuery: {}): Promise<User & Document & import("mongoose").Document<any, any, UserDocument>>;
-    logOut(_id: string): Promise<void>;
+    updateInfo(updateInfo: Partial<UpdateUserDto>, userFilterQuery: {}): import("mongoose").Query<User & Document & import("mongoose").Document<any, any, UserDocument>, User & Document & import("mongoose").Document<any, any, UserDocument>, {}, UserDocument>;
+    logOut(_id: string): void;
     updatePostsArray(_id: Types.ObjectId | string, newPost: Post): Promise<string>;
     updateBookArray(_id: Types.ObjectId | string, newBook: Book): Promise<User & Document & import("mongoose").Document<any, any, UserDocument>>;
-    findById(_id: {}): Promise<ReturnInfoUserDto>;
-    findByEmail(email: {}): Promise<ReturnInfoUserDto>;
-    findByUsername(username: {}): Promise<ReturnInfoUserDto>;
-    findByUsernameFullInfo(username: {}): Promise<User>;
-    findAll(): Promise<any[]>;
-    findOne(_id: string): Promise<ReturnInfoUserDto>;
+    findByFilter(filter: {}): Promise<any>;
+    findAll(parse?: {}): Promise<any[]>;
+    findOne(parse: {}): Promise<ReturnInfoUserDto>;
     update(_id: string, updateUserDto: UpdateUserDto): Promise<ReturnInfoUserDto>;
     remove(_id: string): Promise<ReturnInfoUserDto>;
 }

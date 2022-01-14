@@ -18,8 +18,8 @@ export class AuthService {
 
   async validateUser(logUser: LogUserDto): Promise<any> {
     const { username, password } = logUser;
-    const currentUser = await this.usersService.findByUsernameFullInfo({ username });
-    if (await AuthService.validatePassword(currentUser, password)) {
+    const currentUser = await this.usersService.findByFilter({ username: username });
+    if (currentUser && await AuthService.validatePassword(currentUser, password)) {
       const { password, ...result } = currentUser;
       return result;
     }
@@ -37,7 +37,7 @@ export class AuthService {
 
   async   logIn(logForm: any): Promise<LoginReturnInfoUserDto> {
     const email = logForm._doc.email;
-    let userFound = await this.usersService.findByEmail({ email });
+    let userFound = await this.usersService.findByFilter({ email: email });
     if (!userFound) {
       throw new UnauthorizedException("Invalid credential");
     }
@@ -51,7 +51,7 @@ export class AuthService {
       email: userFound.email,
       sub: userFound._id,
       username: userFound.username,
-      roles: userFound.roles
+      role: userFound.role
     };
     const token = this.jwtService.sign(payload);
     return new LoginReturnInfoUserDto(token, userFound);
@@ -63,7 +63,7 @@ export class AuthService {
   }
 
   async logOut(_id: string) {
-    const currentUser = await this.usersService.findById({ _id });
+    const currentUser = await this.usersService.findByFilter({ _id: _id });
     if (!currentUser)
       throw new NotFoundException("User Not found");
     await this.usersService.logOut(currentUser._id);

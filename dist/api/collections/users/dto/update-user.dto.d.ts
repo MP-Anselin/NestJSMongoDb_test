@@ -7,5 +7,5 @@ export declare class UpdateUserDto {
     email: string;
     username: string;
     isLog: boolean;
-    roles: string[];
+    role: string;
 }

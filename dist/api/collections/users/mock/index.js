@@ -11,7 +11,7 @@ const mockedUserInfo = () => {
         email: expect.any(String),
         isLog: expect.any(Boolean),
         username: expect.any(String),
-        roles: expect.any([]),
+        role: expect.any(String),
         posts: expect.any([]),
         access_token: expect.any(String),
         updatedAt: expect.any(Date),
@@ -66,7 +66,7 @@ exports.userUnitTestParams = {
         username: "testv2.client.6",
         email: "testv2.client.6@testv2.com",
         password: "12345678",
-        roles: ["Client"]
+        role: "Author"
     }
 };
 exports.mockedUser = {

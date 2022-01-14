@@ -37,8 +37,8 @@ let AuthService = AuthService_1 = class AuthService {
     }
     async validateUser(logUser) {
         const { username, password } = logUser;
-        const currentUser = await this.usersService.findByUsernameFullInfo({ username });
-        if (await AuthService_1.validatePassword(currentUser, password)) {
+        const currentUser = await this.usersService.findByFilter({ username: username });
+        if (currentUser && await AuthService_1.validatePassword(currentUser, password)) {
             const { password } = currentUser, result = __rest(currentUser, ["password"]);
             return result;
         }
@@ -53,7 +53,7 @@ let AuthService = AuthService_1 = class AuthService {
     }
     async logIn(logForm) {
         const email = logForm._doc.email;
-        let userFound = await this.usersService.findByEmail({ email });
+        let userFound = await this.usersService.findByFilter({ email: email });
         if (!userFound) {
             throw new common_1.UnauthorizedException("Invalid credential");
         }
@@ -65,7 +65,7 @@ let AuthService = AuthService_1 = class AuthService {
             email: userFound.email,
             sub: userFound._id,
             username: userFound.username,
-            roles: userFound.roles
+            role: userFound.role
         };
         const token = this.jwtService.sign(payload);
         return new login_return_info_user_dto_1.LoginReturnInfoUserDto(token, userFound);
@@ -75,7 +75,7 @@ let AuthService = AuthService_1 = class AuthService {
         return new return_info_user_dto_1.ReturnInfoUserDto(user);
     }
     async logOut(_id) {
-        const currentUser = await this.usersService.findById({ _id });
+        const currentUser = await this.usersService.findByFilter({ _id: _id });
         if (!currentUser)
             throw new not_found_exception_1.NotFoundException("User Not found");
         await this.usersService.logOut(currentUser._id);

@@ -61,8 +61,8 @@ __decorate([
 __decorate([
     mongoose_1.Prop({ require: true }),
     class_validator_1.IsNotEmpty(),
-    __metadata("design:type", Array)
-], User.prototype, "roles", void 0);
+    __metadata("design:type", String)
+], User.prototype, "role", void 0);
 __decorate([
     mongoose_1.Prop({ require: true }),
     class_validator_1.IsNotEmpty(),

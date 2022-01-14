@@ -11,7 +11,7 @@ export declare class User {
     _id: string;
     createdAt: Date;
     updatedAt: Date;
-    roles: string[];
+    role: string;
     salt: string;
     books: Book[];
 }

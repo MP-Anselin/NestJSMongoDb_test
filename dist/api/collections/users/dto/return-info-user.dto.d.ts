@@ -3,7 +3,7 @@ import { Book } from "../../books/schemas/book.schema";
 export declare class ReturnInfoUserDto {
     constructor(user: Partial<User>);
     _id: string;
-    roles: string[];
+    role: string;
     last_name: string;
     first_name: string;
     email: string;

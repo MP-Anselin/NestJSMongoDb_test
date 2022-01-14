@@ -20,10 +20,9 @@ let RolesGuard = class RolesGuard {
     async canActivate(context) {
         const request = context.switchToHttp().getRequest();
         const { username } = request.user;
-        const userInfo = await this.usersService.findByUsername({ username });
-        if (!!userInfo.roles.filter((role) => this.roles.includes(role)).length) {
+        const userInfo = await this.usersService.findByFilter({ username: username });
+        if (this.roles.includes(userInfo.role))
             return true;
-        }
         throw new common_1.UnauthorizedException();
     }
 };

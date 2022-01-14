@@ -9,11 +9,11 @@ export class ReturnInfoUserDto {
     this.email = user.email;
     this.isLog = user.isLog;
     this.username = user.username;
-    this.roles = user.roles;
+    this.role = user.role;
     this.books = user.books;
   }
   _id: string;
-  roles: string[];
+  role: string;
   last_name: string;
   first_name: string;
   email: string;

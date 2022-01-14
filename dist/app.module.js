@@ -16,6 +16,7 @@ const config_1 = require("@nestjs/config");
 const auth_module_1 = require("./api/collections/auth/auth.module");
 const posts_module_1 = require("./api/collections/posts/posts.module");
 const books_module_1 = require("./api/collections/books/books.module");
+const authors_module_1 = require("./api/collections/authors/authors.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -26,7 +27,8 @@ AppModule = __decorate([
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
             posts_module_1.PostsModule,
-            books_module_1.BooksModule
+            books_module_1.BooksModule,
+            authors_module_1.AuthorsModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService]

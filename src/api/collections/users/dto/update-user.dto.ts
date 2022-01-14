@@ -9,7 +9,7 @@ export class UpdateUserDto {
     this.first_name = user.first_name;
     this.email = user.email;
     this.username = user.username;
-    this.roles = user.roles;
+    this.role = user.role;
   }
   updatedAt: Date;
   last_name: string;
@@ -17,5 +17,5 @@ export class UpdateUserDto {
   email: string;
   username: string;
   isLog: boolean;
-  roles: string[];
+  role: string;
 }

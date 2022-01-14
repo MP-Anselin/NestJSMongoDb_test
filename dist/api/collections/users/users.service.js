@@ -20,6 +20,7 @@ const user_schema_1 = require("./schemas/user.schema");
 const update_user_dto_1 = require("./dto/update-user.dto");
 const bcrypt = require("bcryptjs");
 const return_info_user_dto_1 = require("./dto/return-info-user.dto");
+const not_found_exception_1 = require("@nestjs/common/exceptions/not-found.exception");
 let UsersService = class UsersService {
     constructor(userModel) {
         this.userModel = userModel;
@@ -51,51 +52,53 @@ let UsersService = class UsersService {
         delete newUser.password;
         return newUser;
     }
-    async updateInfo(updateInfo, userFilterQuery) {
+    updateInfo(updateInfo, userFilterQuery) {
         updateInfo.updatedAt = new Date();
-        return this.userModel.findOneAndUpdate(userFilterQuery, updateInfo, { useFindAndModify: false });
+        try {
+            return this.userModel.findOneAndUpdate(userFilterQuery, updateInfo, { useFindAndModify: false });
+        }
+        catch (e) {
+            throw new common_1.InternalServerErrorException();
+        }
     }
-    async logOut(_id) {
+    logOut(_id) {
         const userUpdateInfo = new update_user_dto_1.UpdateUserDto();
         userUpdateInfo.isLog = false;
-        await this.updateInfo(userUpdateInfo, { _id });
+        this.updateInfo(userUpdateInfo, { _id });
     }
     async updatePostsArray(_id, newPost) {
         return "that function has to be delete";
     }
     async updateBookArray(_id, newBook) {
-        const userCreator = await this.findById({ _id });
+        const userCreator = await this.findByFilter({ _id: _id });
         userCreator.books.push(newBook);
         return this.updateInfo(userCreator, { _id });
     }
-    async findById(_id) {
-        const user = await this.userModel.findOne(_id);
-        return new return_info_user_dto_1.ReturnInfoUserDto(user);
+    async findByFilter(filter) {
+        const user = await this.userModel.findOne(filter);
+        if (!user) {
+            throw new not_found_exception_1.NotFoundException();
+        }
+        else
+            return new return_info_user_dto_1.ReturnInfoUserDto(user);
     }
-    async findByEmail(email) {
-        const user = await this.userModel.findOne(email);
-        return new return_info_user_dto_1.ReturnInfoUserDto(user);
-    }
-    async findByUsername(username) {
-        const user = await this.userModel.findOne(username);
-        return new return_info_user_dto_1.ReturnInfoUserDto(user);
-    }
-    async findByUsernameFullInfo(username) {
-        return this.userModel.findOne(username);
-    }
-    async findAll() {
+    async findAll(parse = {}) {
         const usersListInfo = [];
         let count = 0;
-        const usersList = await this.userModel.find();
+        const usersList = !parse ? await this.userModel.find() : await this.userModel.find(parse);
         usersList.forEach(function (element) {
             usersListInfo[count] = new return_info_user_dto_1.ReturnInfoUserDto(element);
             count++;
         });
         return usersListInfo;
     }
-    async findOne(_id) {
-        const user = await this.userModel.findOne({ _id });
-        return new return_info_user_dto_1.ReturnInfoUserDto(user);
+    async findOne(parse) {
+        const user = await this.userModel.findOne(parse);
+        if (!user) {
+            throw new not_found_exception_1.NotFoundException();
+        }
+        else
+            return new return_info_user_dto_1.ReturnInfoUserDto(user);
     }
     async update(_id, updateUserDto) {
         updateUserDto.updatedAt = new Date();
