@@ -27,12 +27,12 @@ export class AuthService {
   }
 
   private static async comparePassword(pwd: string, hash: string) {
-    return await bcrypt.compare(pwd, hash);
-  };
+    return  bcrypt.compare(pwd, hash);
+  }
 
   private static async validatePassword(userCheckPwd: User, pwdToCheck: string) {
     const userPwd = userCheckPwd.password;
-    return userCheckPwd && (await AuthService.comparePassword(pwdToCheck, userPwd));
+    return userCheckPwd && AuthService.comparePassword(pwdToCheck, userPwd);
   }
 
   async   logIn(logForm: any): Promise<LoginReturnInfoUserDto> {

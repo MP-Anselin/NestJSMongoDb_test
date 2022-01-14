@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { IsEmail, IsNotEmpty, MinLength, IsDate, Matches } from 'class-validator';
-import { Post } from "../../posts/schemas/post.schema";
 import { Types } from "mongoose";
+import {Book} from "../../books/schemas/book.schema";
 
 export type UserDocument = User & Document;
 
@@ -13,11 +13,11 @@ export class User {
 
   @Prop({ require: true })
   @IsNotEmpty()
-  firstName: string;
+  first_name: string;
 
   @Prop({ require: true })
   @IsNotEmpty()
-  lastName: string;
+  last_name: string;
 
   @Prop({ require: true, unique: true })
   @IsNotEmpty()
@@ -52,8 +52,8 @@ export class User {
   @IsNotEmpty()
   salt: string;
 
-  @Prop({type: [Types.ObjectId], ref: "Post"})
-  posts: Post[];
+  @Prop({type: [Types.ObjectId], ref: "Book"})
+  books: Book[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

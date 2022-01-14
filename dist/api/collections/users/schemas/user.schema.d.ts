@@ -1,10 +1,10 @@
 /// <reference types="mongoose" />
-import { Post } from "../../posts/schemas/post.schema";
+import { Book } from "../../books/schemas/book.schema";
 export declare type UserDocument = User & Document;
 export declare class User {
     email: string;
-    firstName: string;
-    lastName: string;
+    first_name: string;
+    last_name: string;
     username: string;
     password: string;
     isLog: boolean;
@@ -13,6 +13,6 @@ export declare class User {
     updatedAt: Date;
     roles: string[];
     salt: string;
-    posts: Post[];
+    books: Book[];
 }
 export declare const UserSchema: import("mongoose").Schema<import("mongoose").Document<User, any, any>, import("mongoose").Model<any, any, any>, undefined, any>;

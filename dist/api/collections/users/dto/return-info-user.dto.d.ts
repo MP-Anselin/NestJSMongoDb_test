@@ -1,13 +1,13 @@
 import { User } from "../schemas/user.schema";
-import { Post } from "../../posts/schemas/post.schema";
+import { Book } from "../../books/schemas/book.schema";
 export declare class ReturnInfoUserDto {
     constructor(user: Partial<User>);
     _id: string;
     roles: string[];
-    lastName: string;
-    firstName: string;
+    last_name: string;
+    first_name: string;
     email: string;
     username: string;
     isLog: boolean;
-    posts: Post[];
+    books: Book[];
 }

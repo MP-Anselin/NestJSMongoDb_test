@@ -24,12 +24,12 @@ __decorate([
     mongoose_1.Prop({ require: true }),
     class_validator_1.IsNotEmpty(),
     __metadata("design:type", String)
-], User.prototype, "firstName", void 0);
+], User.prototype, "first_name", void 0);
 __decorate([
     mongoose_1.Prop({ require: true }),
     class_validator_1.IsNotEmpty(),
     __metadata("design:type", String)
-], User.prototype, "lastName", void 0);
+], User.prototype, "last_name", void 0);
 __decorate([
     mongoose_1.Prop({ require: true, unique: true }),
     class_validator_1.IsNotEmpty(),
@@ -69,9 +69,9 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "salt", void 0);
 __decorate([
-    mongoose_1.Prop({ type: [mongoose_2.Types.ObjectId], ref: "Post" }),
+    mongoose_1.Prop({ type: [mongoose_2.Types.ObjectId], ref: "Book" }),
     __metadata("design:type", Array)
-], User.prototype, "posts", void 0);
+], User.prototype, "books", void 0);
 User = __decorate([
     mongoose_1.Schema()
 ], User);

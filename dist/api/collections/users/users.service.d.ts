@@ -4,13 +4,15 @@ import { UpdateUserDto } from "./dto/update-user.dto";
 import { RegisterUserDto } from "../auth/dto/register-user.dto";
 import { Post } from "../posts/schemas/post.schema";
 import { ReturnInfoUserDto } from "./dto/return-info-user.dto";
+import { Book } from "../books/schemas/book.schema";
 export declare class UsersService {
     private userModel;
     constructor(userModel: Model<UserDocument>);
     create(newUserInfo: RegisterUserDto): Promise<User>;
     updateInfo(updateInfo: Partial<UpdateUserDto>, userFilterQuery: {}): Promise<User & Document & import("mongoose").Document<any, any, UserDocument>>;
     logOut(_id: string): Promise<void>;
-    updatePostsArray(_id: Types.ObjectId | string, newPost: Post): Promise<User & Document & import("mongoose").Document<any, any, UserDocument>>;
+    updatePostsArray(_id: Types.ObjectId | string, newPost: Post): Promise<string>;
+    updateBookArray(_id: Types.ObjectId | string, newBook: Book): Promise<User & Document & import("mongoose").Document<any, any, UserDocument>>;
     findById(_id: {}): Promise<ReturnInfoUserDto>;
     findByEmail(email: {}): Promise<ReturnInfoUserDto>;
     findByUsername(username: {}): Promise<ReturnInfoUserDto>;

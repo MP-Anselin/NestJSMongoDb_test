@@ -7,6 +7,7 @@ import { RegisterUserDto } from "../auth/dto/register-user.dto";
 import * as bcrypt from "bcryptjs";
 import { Post } from "../posts/schemas/post.schema";
 import { ReturnInfoUserDto } from "./dto/return-info-user.dto";
+import {Book} from "../books/schemas/book.schema";
 
 
 @Injectable()
@@ -54,9 +55,16 @@ export class UsersService {
   }
 
   async updatePostsArray(_id: Types.ObjectId | string, newPost: Post) {
-    const userCreator = await this.findById({ _id });
+    /*const userCreator = await this.findById({ _id });
     userCreator.posts.push(newPost);
-    return await this.updateInfo(userCreator, { _id });
+    return await this.updateInfo(userCreator, { _id });*/
+    return "that function has to be delete"
+  }
+
+  async updateBookArray(_id: Types.ObjectId | string, newBook: Book) {
+    const userCreator = await this.findById({ _id });
+    userCreator.books.push(newBook);
+    return this.updateInfo(userCreator, { _id });
   }
 
   async findById(_id: {}): Promise<ReturnInfoUserDto> {

@@ -2,10 +2,10 @@ import { IsEmail, IsNotEmpty, MaxLength, MinLength, Matches  } from "class-valid
 
 export class RegisterUserDto {
     @IsNotEmpty()
-    firstName: string;
+    first_name: string;
 
     @IsNotEmpty()
-    lastName: string;
+    last_name: string;
 
     @IsNotEmpty()
     username: string;

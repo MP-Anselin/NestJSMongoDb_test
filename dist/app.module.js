@@ -15,6 +15,7 @@ const users_module_1 = require("./api/collections/users/users.module");
 const config_1 = require("@nestjs/config");
 const auth_module_1 = require("./api/collections/auth/auth.module");
 const posts_module_1 = require("./api/collections/posts/posts.module");
+const books_module_1 = require("./api/collections/books/books.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -24,7 +25,8 @@ AppModule = __decorate([
             mongoose_1.MongooseModule.forRoot(process.env.MONGODB_CONNECTION_STRING, { useNewUrlParser: true }),
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
-            posts_module_1.PostsModule
+            posts_module_1.PostsModule,
+            books_module_1.BooksModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService]

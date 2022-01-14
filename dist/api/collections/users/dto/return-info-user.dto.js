@@ -4,13 +4,13 @@ exports.ReturnInfoUserDto = void 0;
 class ReturnInfoUserDto {
     constructor(user) {
         this._id = user._id;
-        this.firstName = user.firstName;
-        this.lastName = user.lastName;
+        this.first_name = user.first_name;
+        this.last_name = user.last_name;
         this.email = user.email;
         this.isLog = user.isLog;
         this.username = user.username;
         this.roles = user.roles;
-        this.posts = user.posts;
+        this.books = user.books;
     }
 }
 exports.ReturnInfoUserDto = ReturnInfoUserDto;

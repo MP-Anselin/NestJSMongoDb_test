@@ -7,6 +7,7 @@ import { UsersModule } from "./api/collections/users/users.module";
 import { ConfigModule } from "@nestjs/config";
 import { AuthModule } from "./api/collections/auth/auth.module";
 import { PostsModule } from "./api/collections/posts/posts.module";
+import { BooksModule } from './api/collections/books/books.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { PostsModule } from "./api/collections/posts/posts.module";
     MongooseModule.forRoot(process.env.MONGODB_CONNECTION_STRING, { useNewUrlParser: true }),
     UsersModule,
     AuthModule,
-    PostsModule],
+    PostsModule,
+    BooksModule],
   controllers: [AppController],
   providers: [AppService]
 })

@@ -2,18 +2,18 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Types } from "mongoose";
 import { IsDate, IsNotEmpty } from "class-validator";
 
-export type PostDocument = Post & Document;
+export type BookDocument = Book & Document;
 
 @Schema()
-export class Post {
+export class Book {
   @Prop({ type: Types.ObjectId, ref: "User"})
-  userId: Types.ObjectId;
+  author: Types.ObjectId;
 
   @Prop({ require: true, unique: true })
-  title: string;
+  name: string;
 
   @Prop({ require: true })
-  description: string;
+  isbn: string;
 
   @Prop({ require: true })
   @IsNotEmpty()
@@ -26,4 +26,4 @@ export class Post {
   updatedAt: Date;
 }
 
-export const PostSchema = SchemaFactory.createForClass(Post);
+export const BookSchema = SchemaFactory.createForClass(Book);

@@ -61,9 +61,12 @@ let UsersService = class UsersService {
         await this.updateInfo(userUpdateInfo, { _id });
     }
     async updatePostsArray(_id, newPost) {
+        return "that function has to be delete";
+    }
+    async updateBookArray(_id, newBook) {
         const userCreator = await this.findById({ _id });
-        userCreator.posts.push(newPost);
-        return await this.updateInfo(userCreator, { _id });
+        userCreator.books.push(newBook);
+        return this.updateInfo(userCreator, { _id });
     }
     async findById(_id) {
         const user = await this.userModel.findOne(_id);
