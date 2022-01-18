@@ -29,7 +29,7 @@ let UsersService = class UsersService {
         const { email } = newUserInfo;
         const userExist = await this.userModel.findOne({ email });
         if (userExist) {
-            throw new common_1.ConflictException("Username already exist");
+            throw new common_1.ConflictException("email already exist");
         }
         const newUser = new this.userModel(newUserInfo);
         newUser.createdAt = new Date();
@@ -69,18 +69,36 @@ let UsersService = class UsersService {
     async updatePostsArray(_id, newPost) {
         return "that function has to be delete";
     }
-    async updateBookArray(_id, newBook) {
-        const userCreator = await this.findByFilter({ _id: _id });
-        userCreator.books.push(newBook);
-        return this.updateInfo(userCreator, { _id });
-    }
-    async findByFilter(filter) {
-        const user = await this.userModel.findOne(filter);
-        if (!user) {
+    async addBookToBookList(_id, bookInfo) {
+        const userUpdate = await this.findOneByFilter({ _id: _id });
+        if (!userUpdate)
             throw new not_found_exception_1.NotFoundException();
-        }
-        else
-            return new return_info_user_dto_1.ReturnInfoUserDto(user);
+        else if (userUpdate.books.includes(bookInfo))
+            throw new common_1.ConflictException();
+        userUpdate.books.push(bookInfo);
+        return this.updateInfo(userUpdate, { _id });
+    }
+    async addBookToFavoriteList(_id, bookInfo) {
+        const userUpdate = await this.findOneByFilter({ _id: _id });
+        if (!userUpdate)
+            throw new not_found_exception_1.NotFoundException();
+        else if (userUpdate.favorite_books.includes(bookInfo))
+            throw new common_1.ConflictException();
+        userUpdate.favorite_books.push(bookInfo);
+        return this.updateInfo(userUpdate, { _id });
+    }
+    async deleteBookToFavoriteList(_id, bookInfo) {
+        const userUpdate = await this.findOneByFilter({ _id: _id });
+        if (!userUpdate || !userUpdate.favorite_books.includes(bookInfo))
+            throw new not_found_exception_1.NotFoundException();
+        userUpdate.favorite_books.splice(bookInfo, 1);
+        return this.updateInfo(userUpdate, { _id });
+    }
+    async findOneByFilter(filter) {
+        const user = await this.userModel.findOne(filter);
+        if (user)
+            return user;
+        throw new not_found_exception_1.NotFoundException();
     }
     async findAll(parse = {}) {
         const usersListInfo = [];
@@ -94,20 +112,22 @@ let UsersService = class UsersService {
     }
     async findOne(parse) {
         const user = await this.userModel.findOne(parse);
-        if (!user) {
-            throw new not_found_exception_1.NotFoundException();
-        }
-        else
+        if (user)
             return new return_info_user_dto_1.ReturnInfoUserDto(user);
+        throw new not_found_exception_1.NotFoundException();
     }
     async update(_id, updateUserDto) {
         updateUserDto.updatedAt = new Date();
         const user = await this.updateInfo(updateUserDto, { _id });
-        return new return_info_user_dto_1.ReturnInfoUserDto(user);
+        if (user)
+            return new return_info_user_dto_1.ReturnInfoUserDto(user);
+        throw new common_1.InternalServerErrorException();
     }
     async remove(_id) {
         const user = await this.userModel.findByIdAndDelete(_id);
-        return new return_info_user_dto_1.ReturnInfoUserDto(user);
+        if (user)
+            return new return_info_user_dto_1.ReturnInfoUserDto(user);
+        throw new common_1.InternalServerErrorException();
     }
 };
 UsersService = __decorate([

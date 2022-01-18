@@ -32,13 +32,19 @@ let UsersController = class UsersController {
     update(id, updateUserDto) {
         return this.usersService.update(id, updateUserDto);
     }
+    addFavoriteBook(userId, bookId) {
+        return this.usersService.addBookToFavoriteList(userId, bookId);
+    }
+    deleteFavoriteBook(userId, bookId) {
+        return this.usersService.deleteBookToFavoriteList(userId, bookId);
+    }
     remove(id) {
         return this.usersService.remove(id);
     }
 };
 __decorate([
     common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
-    common_1.Get(),
+    common_1.Get(''),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
@@ -61,6 +67,24 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "update", null);
 __decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
+    common_1.Patch('favorite/book/add/:userId&:bookId'),
+    __param(0, common_1.Param('userId')),
+    __param(1, common_1.Param('bookId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "addFavoriteBook", null);
+__decorate([
+    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
+    common_1.Patch('favorite/book/delete/:userId&:bookId'),
+    __param(0, common_1.Param('userId')),
+    __param(1, common_1.Param('bookId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "deleteFavoriteBook", null);
+__decorate([
     common_1.UseGuards(passport_1.AuthGuard('jwt'), roles_guard_1.RolesGuard),
     common_1.Delete(':id'),
     __param(0, common_1.Param('id')),
@@ -69,7 +93,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "remove", null);
 UsersController = __decorate([
-    common_1.Controller('users'),
+    common_1.Controller('user'),
     __metadata("design:paramtypes", [users_service_1.UsersService])
 ], UsersController);
 exports.UsersController = UsersController;

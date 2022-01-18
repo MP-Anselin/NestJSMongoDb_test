@@ -17,6 +17,7 @@ let User = class User {
 };
 __decorate([
     mongoose_1.Prop({ require: true, unique: true }),
+    class_validator_1.IsNotEmpty(),
     class_validator_1.IsEmail(),
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
@@ -72,6 +73,10 @@ __decorate([
     mongoose_1.Prop({ type: [mongoose_2.Types.ObjectId], ref: "Book" }),
     __metadata("design:type", Array)
 ], User.prototype, "books", void 0);
+__decorate([
+    mongoose_1.Prop({ type: [mongoose_2.Types.ObjectId], ref: "Book" }),
+    __metadata("design:type", Array)
+], User.prototype, "favorite_books", void 0);
 User = __decorate([
     mongoose_1.Schema()
 ], User);

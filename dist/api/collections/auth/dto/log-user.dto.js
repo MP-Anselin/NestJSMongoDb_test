@@ -20,10 +20,6 @@ __decorate([
 ], LogUserDto.prototype, "email", void 0);
 __decorate([
     class_validator_1.IsNotEmpty(),
-    __metadata("design:type", String)
-], LogUserDto.prototype, "username", void 0);
-__decorate([
-    class_validator_1.IsNotEmpty(),
     class_validator_1.MinLength(8, { message: " The min length of password is 8 " }),
     class_validator_1.MaxLength(20, { message: " The password can't accept more than 20 characters " }),
     __metadata("design:type", String)

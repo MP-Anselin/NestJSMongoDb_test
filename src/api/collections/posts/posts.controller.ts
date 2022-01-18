@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards, ValidationPipe } from "@nestjs/common";
+import {Body, Controller, Delete, Get, Param, Patch, Post, Request, UseGuards, ValidationPipe} from "@nestjs/common";
 import { PostsService } from "./posts.service";
 import { Post as postTable } from "./schemas/post.schema";
 import { CreatePostDto } from "./dto/create-post.dto";

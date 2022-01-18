@@ -36,10 +36,10 @@ let AuthService = AuthService_1 = class AuthService {
         this.jwtService = jwtService;
     }
     async validateUser(logUser) {
-        const { username, password } = logUser;
-        const currentUser = await this.usersService.findByFilter({ username: username });
+        const { email, password } = logUser;
+        const currentUser = await this.usersService.findOneByFilter({ email: email });
         if (currentUser && await AuthService_1.validatePassword(currentUser, password)) {
-            const { password } = currentUser, result = __rest(currentUser, ["password"]);
+            const result = __rest(currentUser, []);
             return result;
         }
         return null;
@@ -49,23 +49,22 @@ let AuthService = AuthService_1 = class AuthService {
     }
     static async validatePassword(userCheckPwd, pwdToCheck) {
         const userPwd = userCheckPwd.password;
+        if (!userPwd)
+            throw new common_1.InternalServerErrorException('Can not execute Matching Password');
         return userCheckPwd && AuthService_1.comparePassword(pwdToCheck, userPwd);
     }
     async logIn(logForm) {
         const email = logForm._doc.email;
-        let userFound = await this.usersService.findByFilter({ email: email });
-        if (!userFound) {
+        let userFound = await this.usersService.findOneByFilter({ email: email });
+        if (!userFound)
             throw new common_1.UnauthorizedException("Invalid credential");
-        }
         userFound.isLog = true;
         const userUpdateInfo = new update_user_dto_1.UpdateUserDto(userFound);
         const _id = userFound._id;
-        await this.usersService.updateInfo(userUpdateInfo, { _id });
+        this.usersService.updateInfo(userUpdateInfo, { _id });
         const payload = {
             email: userFound.email,
             sub: userFound._id,
-            username: userFound.username,
-            role: userFound.role
         };
         const token = this.jwtService.sign(payload);
         return new login_return_info_user_dto_1.LoginReturnInfoUserDto(token, userFound);
@@ -75,10 +74,10 @@ let AuthService = AuthService_1 = class AuthService {
         return new return_info_user_dto_1.ReturnInfoUserDto(user);
     }
     async logOut(_id) {
-        const currentUser = await this.usersService.findByFilter({ _id: _id });
+        const currentUser = await this.usersService.findOneByFilter({ _id: _id });
         if (!currentUser)
             throw new not_found_exception_1.NotFoundException("User Not found");
-        await this.usersService.logOut(currentUser._id);
+        this.usersService.logOut(currentUser._id);
     }
 };
 AuthService = AuthService_1 = __decorate([

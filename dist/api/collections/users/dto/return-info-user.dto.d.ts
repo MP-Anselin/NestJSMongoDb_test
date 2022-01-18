@@ -10,4 +10,5 @@ export declare class ReturnInfoUserDto {
     username: string;
     isLog: boolean;
     books: Book[];
+    favorite_books: Book[];
 }

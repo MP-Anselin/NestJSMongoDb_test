@@ -20,9 +20,9 @@ let LocalStrategy = class LocalStrategy extends passport_1.PassportStrategy(pass
         super();
         this.authService = authService;
     }
-    async validate(username, password) {
+    async validate(email, password) {
         const userLogInfo = new log_user_dto_1.LogUserDto();
-        userLogInfo.username = username;
+        userLogInfo.email = email;
         userLogInfo.password = password;
         const currentUser = await this.authService.validateUser(userLogInfo);
         if (!currentUser) {

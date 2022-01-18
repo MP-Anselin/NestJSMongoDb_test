@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ValidationPipe} from '@nestjs/common';
+import {Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ValidationPipe, Request} from '@nestjs/common';
 import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
@@ -12,8 +12,9 @@ export class BooksController {
 
   @UseGuards(JwtAuthGuard)
   @Post("create")
-  create(@Body(ValidationPipe) createBookDto: CreateBookDto): Promise<Book> {
-    return this.booksService.create(createBookDto);
+  create(@Body(ValidationPipe) createBookDto: CreateBookDto,  @Request() request): Promise<Book> {
+    console.log("BooksController : create: request.user => ", request.user)
+    return this.booksService.create(createBookDto, request.user.userId);
   }
 
   @UseGuards(JwtAuthGuard)

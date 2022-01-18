@@ -13,7 +13,7 @@ export class BooksService {
               private usersService: UsersService) {
   }
 
-  async create(newBookInfo: CreateBookDto): Promise<Book> {
+  async create(newBookInfo: CreateBookDto, userId: string): Promise<Book> {
     const { name } = newBookInfo;
     const userExist = await this.bookModel.findOne({ name });
     if (userExist) {
@@ -32,7 +32,7 @@ export class BooksService {
       }
     }
 
-    await this.usersService.addBookToBookList(newBook._id, newBook);
+    await this.usersService.addBookToBookList(userId, newBook);
     return newBook;
   }
 

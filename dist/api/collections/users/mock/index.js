@@ -57,7 +57,7 @@ exports.userUnitTestParams = {
     updateUserDto: new update_user_dto_1.UpdateUserDto(),
     userId: "610f7d3ff43715b50c1d00a4",
     logUser: {
-        username: "testv2.0",
+        email: "testv2.0",
         password: "12345678"
     },
     newUser: {

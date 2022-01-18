@@ -7,7 +7,7 @@ export declare class BooksService {
     private bookModel;
     private usersService;
     constructor(bookModel: Model<BookDocument>, usersService: UsersService);
-    create(newBookInfo: CreateBookDto): Promise<Book>;
+    create(newBookInfo: CreateBookDto, userId: string): Promise<Book>;
     findAll(): Promise<(Book & Document & import("mongoose").Document<any, any, BookDocument>)[]>;
     findOne(_id: string): Promise<Book & Document & import("mongoose").Document<any, any, BookDocument>>;
     update(_id: string, updateBookDto: UpdateBookDto): Promise<Book & Document & import("mongoose").Document<any, any, BookDocument>>;

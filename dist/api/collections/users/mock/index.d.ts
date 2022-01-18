@@ -8,7 +8,7 @@ export declare const userUnitTestParams: {
     updateUserDto: UpdateUserDto;
     userId: string;
     logUser: {
-        username: string;
+        email: string;
         password: string;
     };
     newUser: {

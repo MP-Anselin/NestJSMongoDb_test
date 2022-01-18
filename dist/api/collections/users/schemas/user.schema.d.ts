@@ -14,5 +14,6 @@ export declare class User {
     role: string;
     salt: string;
     books: Book[];
+    favorite_books: Book[];
 }
 export declare const UserSchema: import("mongoose").Schema<import("mongoose").Document<User, any, any>, import("mongoose").Model<any, any, any>, undefined, any>;

@@ -24,7 +24,7 @@ let BooksService = class BooksService {
         this.bookModel = bookModel;
         this.usersService = usersService;
     }
-    async create(newBookInfo) {
+    async create(newBookInfo, userId) {
         const { name } = newBookInfo;
         const userExist = await this.bookModel.findOne({ name });
         if (userExist) {
@@ -44,7 +44,7 @@ let BooksService = class BooksService {
                 throw new common_1.InternalServerErrorException();
             }
         }
-        await this.usersService.updateBookArray(newBook._id, newBook);
+        await this.usersService.addBookToBookList(userId, newBook);
         return newBook;
     }
     async findAll() {

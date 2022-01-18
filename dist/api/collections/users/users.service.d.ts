@@ -4,7 +4,6 @@ import { UpdateUserDto } from "./dto/update-user.dto";
 import { RegisterUserDto } from "../auth/dto/register-user.dto";
 import { Post } from "../posts/schemas/post.schema";
 import { ReturnInfoUserDto } from "./dto/return-info-user.dto";
-import { Book } from "../books/schemas/book.schema";
 export declare class UsersService {
     private userModel;
     constructor(userModel: Model<UserDocument>);
@@ -12,8 +11,10 @@ export declare class UsersService {
     updateInfo(updateInfo: Partial<UpdateUserDto>, userFilterQuery: {}): import("mongoose").Query<User & Document & import("mongoose").Document<any, any, UserDocument>, User & Document & import("mongoose").Document<any, any, UserDocument>, {}, UserDocument>;
     logOut(_id: string): void;
     updatePostsArray(_id: Types.ObjectId | string, newPost: Post): Promise<string>;
-    updateBookArray(_id: Types.ObjectId | string, newBook: Book): Promise<User & Document & import("mongoose").Document<any, any, UserDocument>>;
-    findByFilter(filter: {}): Promise<any>;
+    addBookToBookList(_id: Types.ObjectId | string, bookInfo: any): Promise<User & Document & import("mongoose").Document<any, any, UserDocument>>;
+    addBookToFavoriteList(_id: Types.ObjectId | string, bookInfo: any): Promise<User & Document & import("mongoose").Document<any, any, UserDocument>>;
+    deleteBookToFavoriteList(_id: Types.ObjectId | string, bookInfo: any): Promise<User & Document & import("mongoose").Document<any, any, UserDocument>>;
+    findOneByFilter(filter: {}): Promise<User>;
     findAll(parse?: {}): Promise<any[]>;
     findOne(parse: {}): Promise<ReturnInfoUserDto>;
     update(_id: string, updateUserDto: UpdateUserDto): Promise<ReturnInfoUserDto>;

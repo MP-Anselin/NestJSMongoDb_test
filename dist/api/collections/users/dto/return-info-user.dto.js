@@ -11,6 +11,7 @@ class ReturnInfoUserDto {
         this.username = user.username;
         this.role = user.role;
         this.books = user.books;
+        this.favorite_books = user.favorite_books;
     }
 }
 exports.ReturnInfoUserDto = ReturnInfoUserDto;

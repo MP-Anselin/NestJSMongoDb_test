@@ -63,7 +63,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AuthorsController.prototype, "update", null);
 AuthorsController = __decorate([
-    common_1.Controller('authors'),
+    common_1.Controller('author'),
     __metadata("design:paramtypes", [authors_service_1.AuthorsService])
 ], AuthorsController);
 exports.AuthorsController = AuthorsController;

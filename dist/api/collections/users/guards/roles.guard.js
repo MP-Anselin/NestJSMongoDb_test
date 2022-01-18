@@ -19,8 +19,8 @@ let RolesGuard = class RolesGuard {
     }
     async canActivate(context) {
         const request = context.switchToHttp().getRequest();
-        const { username } = request.user;
-        const userInfo = await this.usersService.findByFilter({ username: username });
+        const { email } = request.user;
+        const userInfo = await this.usersService.findOneByFilter({ email: email });
         if (this.roles.includes(userInfo.role))
             return true;
         throw new common_1.UnauthorizedException();

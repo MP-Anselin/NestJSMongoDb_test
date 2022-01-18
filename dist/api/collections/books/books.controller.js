@@ -22,8 +22,9 @@ let BooksController = class BooksController {
     constructor(booksService) {
         this.booksService = booksService;
     }
-    create(createBookDto) {
-        return this.booksService.create(createBookDto);
+    create(createBookDto, request) {
+        console.log("BooksController : create: request.user => ", request.user);
+        return this.booksService.create(createBookDto, request.user.userId);
     }
     findAll() {
         return this.booksService.findAll();
@@ -42,13 +43,14 @@ __decorate([
     common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
     common_1.Post("create"),
     __param(0, common_1.Body(common_1.ValidationPipe)),
+    __param(1, common_1.Request()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_book_dto_1.CreateBookDto]),
+    __metadata("design:paramtypes", [create_book_dto_1.CreateBookDto, Object]),
     __metadata("design:returntype", Promise)
 ], BooksController.prototype, "create", null);
 __decorate([
     common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
-    common_1.Get(),
+    common_1.Get('s'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
@@ -79,7 +81,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BooksController.prototype, "remove", null);
 BooksController = __decorate([
-    common_1.Controller('books'),
+    common_1.Controller('book'),
     __metadata("design:paramtypes", [books_service_1.BooksService])
 ], BooksController);
 exports.BooksController = BooksController;
